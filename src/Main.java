@@ -2,7 +2,45 @@ public class Main {
 
 
     public static LinkList sort(LinkList head) {
-        return head;
+        LinkList zeroStart = null;
+        LinkList zeroEnd = null;
+        LinkList oneStart = null;
+        LinkList oneEnd = null;
+
+        LinkList start = head;
+
+        while(start != null){
+            if(start.value == 0){
+                if(zeroStart == null){
+                    zeroStart = start;
+                    zeroEnd = start;
+                }else{
+                    zeroEnd.setNext(start);
+                    zeroEnd = start;
+                }
+            }
+            else {
+                if(oneStart == null){
+                    oneStart = start;
+                    oneEnd = start;
+                }else{
+                    oneEnd.setNext(start);
+                    oneEnd = start;
+                }
+            }
+            start = start.next;
+        }
+
+        if(oneEnd !=null){
+            oneEnd.setNext(null);
+        }
+        if(zeroStart == null){
+            return oneStart;
+        }
+        zeroEnd.setNext(oneStart);
+
+        return zeroStart;
+
     }
 
     static void printList(LinkList n) {
@@ -15,11 +53,11 @@ public class Main {
     public static void main(String[] args) {
         LinkList n1 = new LinkList(0);
         LinkList n2 = new LinkList(1);
-        LinkList n3 = new LinkList(1);
-        LinkList n4 = new LinkList(0);
-        LinkList n5 = new LinkList(1);
-        LinkList n6 = new LinkList(0);
-        LinkList n7 = new LinkList(1);
+        LinkList n3 = new LinkList(0);
+        LinkList n4 = new LinkList(1);
+        LinkList n5 = new LinkList(0);
+        LinkList n6 = new LinkList(1);
+        LinkList n7 = new LinkList(0);
 
         n1.setNext(n2);
         n2.setNext(n3);
